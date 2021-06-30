@@ -15,8 +15,7 @@ app.use(cors());
 app.use(fileUpload());
 const PORT = process.env.PORT || 5000;
 
-
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.j70me.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const uri =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.6ot7m.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const blogCollection = client.db("blogPostDb").collection("blogs");
@@ -45,7 +44,6 @@ client.connect(err => {
             .toArray((err, documents) => {
                 res.send(documents);
             })
-
       app.delete('/deleteBlogs/:id', (req, res) => {
             const id = ObjectID(req.params.id)
             blogCollection.deleteOne({ _id: id })
